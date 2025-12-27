@@ -40,9 +40,9 @@ A native GTK4/Adwaita application for Arch Linux to create and manage Werewolf: 
   - Additional Gifts from wyrmfoe.com included
 
 - **Save/Load System**
-  - Characters saved as readable Markdown (.md) files
+  - Characters saved as readable Markdown format with .w20 extension
   - Automatic character discovery in save folder
-  - Export to plain text (.txt) for printing
+  - Export to .w20 files for sharing
 
 ## Requirements
 
@@ -83,8 +83,8 @@ kinfolk
 6. **Select Gifts**: Choose starting Gifts from your Breed, Auspice, and Tribe lists
 7. **View Forms**: Check the Forms section to see attribute modifiers for each form
 8. **Advance Modes**: Click "Advance to Freebie Mode" when creation dots are spent
-9. **Save**: Click "Save" to store your character as a .md file
-10. **Export**: Click "Export TXT" to create a printable text file
+9. **Save**: Click "Save" to store your character as a .w20 file
+10. **Export**: Click "Export" to save your character as a .w20 file
 
 ## Character Storage
 

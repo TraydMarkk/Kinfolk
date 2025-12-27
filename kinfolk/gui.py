@@ -2837,7 +2837,7 @@ class CharacterList(Gtk.Box):
             return
         
         for filename in sorted(os.listdir(save_dir)):
-            if filename.endswith(".md"):
+            if filename.endswith(".w20"):
                 filepath = os.path.join(save_dir, filename)
                 
                 try:
@@ -3020,7 +3020,7 @@ class KinfolkApp(Adw.Application):
             safe_name = "".join(c for c in self.current_character.name if c.isalnum() or c in " -_").strip()
             if not safe_name:
                 safe_name = "New Character"
-            self.current_filepath = os.path.join(self.save_directory, f"{safe_name}.md")
+            self.current_filepath = os.path.join(self.save_directory, f"{safe_name}.w20")
         
         try:
             self.current_character.save_to_markdown(self.current_filepath)
@@ -3035,19 +3035,28 @@ class KinfolkApp(Adw.Application):
             dialog.present()
     
     def _on_export(self, button):
-        """Export character to TXT."""
+        """Export character to .w20 file."""
         if not self.current_character:
             return
         
         dialog = Gtk.FileDialog()
-        dialog.set_initial_name(f"{self.current_character.name}.txt")
+        dialog.set_initial_name(f"{self.current_character.name}.w20")
+        
+        # Create file filter for .w20 files
+        filter_w20 = Gtk.FileFilter()
+        filter_w20.set_name("Kinfolk Character Files")
+        filter_w20.add_pattern("*.w20")
+        dialog.set_default_filter(filter_w20)
         
         def on_save_response(dialog, result):
             try:
                 file = dialog.save_finish(result)
                 if file:
                     filepath = file.get_path()
-                    # Save as markdown (can add text export later)
+                    # Ensure .w20 extension
+                    if not filepath.endswith(".w20"):
+                        filepath += ".w20"
+                    # Save as markdown format with .w20 extension
                     self.current_character.save_to_markdown(filepath)
             except GLib.Error:
                 pass
